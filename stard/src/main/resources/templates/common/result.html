@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Modal -->
+	<div class="modal fade" tabindex="-1" th:if="${page.useModal}" th:attr="style=|display: block;|">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">[[${page.modalTitle}]]</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <p>[[${page.modalBody}]]</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:if="${page.useSecondaryBtn}">[[${page.secondaryBtn}]]</button>
+	        <button type="button" class="btn btn-primary" th:onclick="|location.href='@{${page.primaryUrl}}'|">[[${page.primaryBtn}]]</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal-backdrop fade" th:if="${page.useModal}"></div>
+	
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		if("[(${page.useModal})]") {
+			(function() {
+				document.querySelectorAll('.modal, .modal-backdrop').forEach((e) => {
+					e.classList.add('show');
+				});
+			}) ();
+		}
+	</script>
+</body>
+</html>
